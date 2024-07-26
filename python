@@ -1,0 +1,71 @@
+#Faça um programa que receba o valor de uma dívida e mostre uma tabela com os seguintes dados: valor da dívida, valor dos juros, quantidade de parcelas e valor da parcela. Os juros e a quantidade de parcelas seguem a tabela:
+#QUANTIDADE DE PARCELAS % DE JUROS SOBRE O VALOR
+#INICIAL DA DÍVIDA
+
+#1 0
+#3 10
+#6 15
+#9 20
+#12 25
+
+#Lista IV – Estrutura Repetição
+
+#SERVIÇO NACIONAL DE APRENDIZAGEM INDUSTRIAL
+#Administração Regional em São Paulo
+
+#Exemplo de saída do programa:
+#VALOR DA DÍVIDA
+
+#VALOR DOS JUROS
+
+#QUANTIDADE DE PARCELAS
+
+#VALOR DA PARCELA
+#R$ 1.000,00 0 1 R$ 1.000,00
+#R$ 1.100,00 100 3 R$ 366,67
+#R$ 1.150,00 150 6 R$ 191,67
+
+def calcular_parcelas(valor_divida):
+    tabela_parcelas = [
+        (1, 0),
+        (3, 10),
+        (6, 15),
+        (9, 20),
+        (12, 25)
+    ]
+    
+    # Criação da tabela formatada
+    tabela_formatada = []
+    
+    for parcelas, percentual_juros in tabela_parcelas:
+        valor_juros = valor_divida * (percentual_juros / 100)
+        valor_total = valor_divida + valor_juros
+        valor_parcela = valor_total / parcelas
+        
+        linha_tabela = [
+            f"R$ {valor_total:.2f}",
+            f"R$ {valor_juros:.2f}",
+            parcelas,
+            f"R$ {valor_parcela:.2f}"
+        ]
+        
+        tabela_formatada.append(linha_tabela)
+    
+    return tabela_formatada
+
+# Função principal para entrada de dados e impressão da tabela
+def main():
+    valor_divida = float(input("Informe o valor da dívida: R$ "))
+    
+    # Calcula a tabela de parcelas com base no valor da dívida
+    tabela_parcelas = calcular_parcelas(valor_divida)
+    
+    # Impressão da tabela formatada
+    print("\nTABELA DE PARCELAS:")
+    print("VALOR DA DÍVIDA | VALOR DOS JUROS | QUANTIDADE DE PARCELAS | VALOR DA PARCELA")
+    for linha in tabela_parcelas:
+        print(f"{linha[0]:<16} | {linha[1]:<15} | {linha[2]:<22} | {linha[3]:<17}")
+
+# Execução do programa
+if __name__ == "__main__":
+    main()
